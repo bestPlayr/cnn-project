@@ -6,8 +6,8 @@ import pickle
 
 model = load_model('cats_dogs.h5')
 
-with open('label_encoder.pkl', 'rb') as f:
-    label_encoder = pickle.load(f)
+with open('label_encoder.pkl', 'rb') as encoder:
+    label_encoder = pickle.load(encoder)
 
 def predict_image(image):
     img = image.resize((128, 128))
@@ -19,7 +19,7 @@ def predict_image(image):
     class_label = label_encoder.inverse_transform(predicted_class)
     return class_label[0]
 
-st.title("Cat and Dog Classifier")
+st.title("Cats and Dogs Classifier")
 st.write("This project is built using a Convolutional Neural Network (CNN) to classify images of cats and dogs.")
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
 
